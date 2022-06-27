@@ -1,20 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context>
-	<Resource
-		name="jdbc/poolRepasDB"
-		
+	<Resource name="jdbc/poolEnchereDB"
+
 		driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
 		type="javax.sql.DataSource"
-		
-		url="jdbc:sqlserver://localhost;databasename=ENCHERE_DB"
-		username="sa"
-		password="Pa$$w0rd"
-		
-		initialSize="3"
-		maxTotal="15"
-		minIdle="2"
-		maxIdle="5"
-		maxWaitMillis="6000"
-		
-	/>
+
+		url="jdbc:sqlserver://10.103.200.9;databasename=BD_ENCHERE"
+		username="sa" password="Pa$$w0rd" initialSize="3" maxTotal="15"
+		minIdle="2" maxIdle="5" maxWaitMillis="6000" />
 </Context>
