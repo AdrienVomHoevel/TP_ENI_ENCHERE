@@ -4,23 +4,23 @@ import java.time.LocalDate;
 
 public class Utilisateur {
 
-	private int noutilisateur;
+	private int noUtilisateur;
 	private String pseudo;
 	private String nom;
 	private String prenom;
 	private String email;
 	private String telephone;
 	private String rue;
-	private int codePostal;
+	private String codePostal;
 	private String ville;
 	private String motDePasse;
 	private int credit = 0;
-	private String administrateur;
+	private Boolean administrateur;
 
-	public Utilisateur(int noutilisateur, String pseudo, String nom, String prenom, String email, String telephone,
-			String rue, int codePostal, String ville, String motDePasse, int credit, String administrateur) {
+	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
+			String rue, String codePostal, String ville, String motDePasse, int credit, Boolean administrateur) {
 		super();
-		this.noutilisateur = noutilisateur;
+		this.noUtilisateur = noUtilisateur;
 		this.pseudo = pseudo;
 		this.nom = nom;
 		this.prenom = prenom;
@@ -34,12 +34,12 @@ public class Utilisateur {
 		this.administrateur = administrateur;
 	}
 
-	public int getNoutilisateur() {
-		return noutilisateur;
+	public int getNoUtilisateur() {
+		return noUtilisateur;
 	}
 
-	public void setNoutilisateur(int noutilisateur) {
-		this.noutilisateur = noutilisateur;
+	public void setNoUtilisateur(int noUtilisateur) {
+		this.noUtilisateur = noUtilisateur;
 	}
 
 	public String getPseudo() {
@@ -90,11 +90,11 @@ public class Utilisateur {
 		this.rue = rue;
 	}
 
-	public int getCodePostal() {
+	public String getCodePostal() {
 		return codePostal;
 	}
 
-	public void setCodePostal(int codePostal) {
+	public void setCodePostal(String codePostal) {
 		this.codePostal = codePostal;
 	}
 
@@ -122,11 +122,11 @@ public class Utilisateur {
 		this.credit = credit;
 	}
 
-	public String getAdministrateur() {
+	public Boolean getAdministrateur() {
 		return administrateur;
 	}
 
-	public void setAdministrateur(String administrateur) {
+	public void setAdministrateur(Boolean administrateur) {
 		this.administrateur = administrateur;
 	}
 
@@ -178,7 +178,7 @@ public class Utilisateur {
 
 	@Override
 	public String toString() {
-		return "Utilisateur [noutilisateur=" + noutilisateur + ", pseudo=" + pseudo + ", nom=" + nom + ", prenom="
+		return "Utilisateur [noUtilisateur=" + noUtilisateur + ", pseudo=" + pseudo + ", nom=" + nom + ", prenom="
 				+ prenom + ", email=" + email + ", telephone=" + telephone + ", rue=" + rue + ", codePostal="
 				+ codePostal + ", ville=" + ville + ", motDePasse=" + motDePasse + ", credit=" + credit
 				+ ", administrateur=" + administrateur + "]";
