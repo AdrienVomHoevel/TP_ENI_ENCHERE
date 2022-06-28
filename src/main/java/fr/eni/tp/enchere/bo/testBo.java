@@ -7,7 +7,7 @@ public class testBo {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		Utilisateur didier = new Utilisateur(1,"Did" ,"Dabar", "Didier", "didier.dabar@outlook.com", "0642315876", "Rue du bar", 44521, "Nantes","Pa$$W0rd", 0, "Solange");
+		Utilisateur didier = new Utilisateur(1,"Did" ,"Dabar", "Didier", "didier.dabar@outlook.com", "0642315876", "Rue du bar", "0652874632", "Nantes","Pa$$W0rd", 0, true);
 		
 		
 		

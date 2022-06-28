@@ -6,6 +6,10 @@ public class Enchere {
 
 	private LocalDate dateEnchere;
 	private int montant_enchere;
+	
+	
+
+
 
 	public Enchere(LocalDate dateEnchere, int montant_enchere) {
 		super();

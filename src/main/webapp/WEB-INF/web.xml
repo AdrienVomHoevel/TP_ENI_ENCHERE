@@ -28,5 +28,16 @@
 		<servlet-name>JSP_INSCRIPTION</servlet-name>
 		<url-pattern>/inscription</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>JSP_NOUVELLEVENTE</servlet-name>
+		<jsp-file>/WEB-INF/jsp/NouvelleVente.jsp</jsp-file>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>JSP_NOUVELLEVENTE</servlet-name>
+		<url-pattern>/nouvelle_vente</url-pattern>
+	</servlet-mapping>
+	
 
 </web-app>
