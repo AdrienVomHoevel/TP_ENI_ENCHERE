@@ -17,6 +17,9 @@ public class Utilisateur {
 	private int credit = 0;
 	private Boolean administrateur;
 
+	public Utilisateur() {
+	}
+
 	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
 			String rue, String codePostal, String ville, String motDePasse, int credit, Boolean administrateur) {
 		super();
