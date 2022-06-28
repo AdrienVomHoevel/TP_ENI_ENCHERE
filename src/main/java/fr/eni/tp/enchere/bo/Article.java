@@ -11,7 +11,7 @@ public class Article {
 	private LocalDate dateFinEncheres;
 	private int miseAPrix;
 	private int prixVente;
-	private String statVente;
+	private String etatVente;
 
 	public Article(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
 			LocalDate dateFinEncheres, int miseAPrix, int prixVente, String statVente) {
@@ -23,7 +23,7 @@ public class Article {
 		this.dateFinEncheres = dateFinEncheres;
 		this.miseAPrix = miseAPrix;
 		this.prixVente = prixVente;
-		this.statVente = statVente;
+		this.etatVente = statVente;
 	}
 
 	public int getNoArticle() {
@@ -83,11 +83,11 @@ public class Article {
 	}
 
 	public String getStatVente() {
-		return statVente;
+		return etatVente;
 	}
 
 	public void setStatVente(String statVente) {
-		this.statVente = statVente;
+		this.etatVente = statVente;
 	}
 	
 	public Retrait lieuRetrait(String nomArticle, int miseAPrix, String ville) {
@@ -105,7 +105,7 @@ public class Article {
 	public String toString() {
 		return "Article [noArticle=" + noArticle + ", nomArticle=" + nomArticle + ", description=" + description
 				+ ", dateDebutEncheres=" + dateDebutEncheres + ", dateFinEncheres=" + dateFinEncheres + ", miseAPrix="
-				+ miseAPrix + ", prixVente=" + prixVente + ", statVente=" + statVente + "]";
+				+ miseAPrix + ", prixVente=" + prixVente + ", statVente=" + etatVente + "]";
 	}
 	
 	

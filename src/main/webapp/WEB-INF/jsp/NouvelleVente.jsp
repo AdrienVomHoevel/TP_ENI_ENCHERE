@@ -16,110 +16,95 @@
 			<h3>Nouvelle vente</h3>
 		</div>
 
-		<form action="">
+		<form method="post"
+			action="<%=request.getContextPath() %>/routeservletnouvellevente">
 			<div>
 				<p>
-					Article : <input type="text">
+					Article : <input type="text" name="nomArticle">
 				</p>
 			</div>
-		</form>
 
-		<form action="">
+
 			<div>
 				<p>
-					Description : <input type="text">
+					Description : <input type="text" name="description">
 				</p>
 			</div>
-		</form>
 
-		<label for="list-categorie">Catégorie :</label> <select
-			name="categories" id="list-categorie">
-			<option value="">---Selectionnez une catégorie---</option>
-			<option value="informatique">Informatique</option>
-			<option value="ameublement">Ameublement</option>
-			<option value="vetement">Vêtement</option>
-			<option value="sport&loisirs">Sport & Loisirs</option>
-		</select>
 
-		<form action="">
+			<label for="list-categorie">Catégorie :</label> <select
+				name="categories" id="list-categorie">
+				<option value="">---Selectionnez une catégorie---</option>
+				<option value="informatique">Informatique</option>
+				<option value="ameublement">Ameublement</option>
+				<option value="vetement">Vêtement</option>
+				<option value="sport&loisirs">Sport & Loisirs</option>
+			</select> Fichiers sélectionnés : <input type="file" name="multiPartServlet"
+				accept="image/*" multiple
+				onchange="readFilesAndDisplayPreview(this.files);" /> <br /> <input
+				type="submit" value="Upload" /> <br />
+
+			<div id="list"></div>
+
+
+
+			<label for="miseaprix">Mise à prix : </label> <input type="number"
+				id="miseaprix" name="PrixdeMise">
+
+
+
+
 			<div>
 				<p>
-					Photo de l'article : <input type="file">
+					Début de l'enchère : <input type="date" name="datedebutenchere">
 				</p>
 			</div>
-		</form>
 
-		<form action="/action_page.php">
-			<label for="Mise à prix">Mise à prix : </label> <input type="number"
-				id="miseaprix" name="miseaprix">
 
-		</form>
 
-		<form action="">
 			<div>
 				<p>
-					Début de l'enchère : <input type="date">
+					Fin de l'enchère : <input type="date" name="datefinenchere">
 				</p>
 			</div>
-		</form>
 
-		<form action="">
-			<div>
-				<p>
-					Fin de l'enchère : <input type="date">
-				</p>
-			</div>
-		</form>
-
-		<div>
-			<p>Retrait</p>
 
 			<div>
+				<p>Retrait</p>
+</div>
+				<div>
 
-				<form action="">
 					<div>
 						<p>
-							Rue : <input type="text">
+							Rue : <input type="text" name="rueRetrait">
 						</p>
 					</div>
-				</form>
 
-				<form action="">
 					<div>
 						<p>
-							Code postal : <input type="text">
+							Code postal : <input type="text" name="codepostal">
 						</p>
 					</div>
-				</form>
 
-				<form action="">
 					<div>
 						<p>
-							Ville : <input type="text">
+							Ville : <input type="text" name="ville">
 						</p>
 					</div>
-				</form>
 
-			</div>
+				</div>
 
-		</div>
+				<div>
+					<button>Enregistrer</button>
+				</div>
 
-		<form action="">
-			<div>
-				<button>Enregistrer</button>
-			</div>
-		</form>
+				<div>
+					<button>Annuler</button>
+				</div>
 
-		<form action="">
-			<div>
-				<button>Annuler</button>
-			</div>
-		</form>
-
-		<form action="">
-			<div>
-				<button>Annuler la vente</button>
-			</div>
+				<div>
+					<button>Annuler la vente</button>
+				</div>
 		</form>
 
 	</div>
