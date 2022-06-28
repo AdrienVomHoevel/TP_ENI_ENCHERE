@@ -14,9 +14,10 @@
 	<a href="#">S'incrire - Se connecter</a>
 	<h2>Liste des enchères</h2>
 	<form action="<c:url value="/rechRapide" />" method="post">
-		<input name="" type="text" placeholder="Le nom de l'article contient"
-			value="${ param.saisie }" /> <label for="list-categorie">Catégorie
-			:</label> <select name="categories" id="list-categorie">
+		<input name="saisieUtilisateur" type="text"
+			placeholder="Le nom de l'article contient" value="${ param.saisie }" />
+		<label for="list-categorie">Catégorie :</label> <select
+			name="categories" id="list-categorie">
 			<option value="">---Selectionnez une catégorie---</option>
 			<option value="informatique">Informatique</option>
 			<option value="ameublement">Ameublement</option>
