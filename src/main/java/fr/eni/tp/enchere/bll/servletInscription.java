@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.tp.enchere.bo.Utilisateur;
+import fr.eni.tp.enchere.dal.jdbc.UtilisateurDAOJdbcImpl;
+
 /**
  * Servlet implementation class servletInscription
  */
@@ -36,6 +39,9 @@ public class servletInscription extends HttpServlet {
 		String saisieMotDePasse = null;
 		String saisieComfirmation = null;
 
+		// Etablir la connexion
+		UtilisateurDAOJdbcImpl connexionDB = new UtilisateurDAOJdbcImpl();
+
 		saisiePseudo = request.getParameter("saisiePseudo");
 		saisieNom = request.getParameter("saisieNom");
 		saisiePrenom = request.getParameter("saisiePrenom");
@@ -47,10 +53,20 @@ public class servletInscription extends HttpServlet {
 		saisieMotDePasse = request.getParameter("saisieMotDePasse");
 		saisieComfirmation = request.getParameter("saisieComfirmation");
 
-		// TODO Faire un retour sur le visuel du profil
-		// Si tout s'est bien passé, afficher le resultat de la recherche
-		RequestDispatcher rd = request.getRequestDispatcher("/accueil");
-		rd.forward(request, response);
+		// Si le mot de passe et la comfirmation sont identiques
+		if (saisieMotDePasse.equals(saisieComfirmation)) {
+			Utilisateur utilisateurAjout = new Utilisateur(saisiePseudo, saisieNom, saisiePrenom, saisieEmail,
+					saisieTelephone, saisieRue, saisieCodePostal, saisieVille, saisieMotDePasse, 0, false);
+
+			connexionDB.insert(utilisateurAjout);
+			// TODO Retourner à l'accueil puis mettre la session en mode connectée
+			RequestDispatcher rd = request.getRequestDispatcher("/accueil");
+			rd.forward(request, response);
+		} else {
+			// TODO retourner sur la création du profil en indiquant l'erreur au niveau du
+			// MDP
+			// manquant/erronés.
+		}
 
 	}
 
