@@ -24,6 +24,7 @@ public class GestionProfils extends HttpServlet {
 		// Ajout de l'utilisateur
 		connexionDB.insert(ajoutTest);
 		System.out.println("test de la conexion à la DAL" + ajoutTest.toString());
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

@@ -24,8 +24,6 @@ public class UtilisateurDAOJdbcImpl {
 		try (Connection cnx = ConnectionProvider.getConnection()) // la connexion va être automatiquement fermée
 		{
 			try {
-				// Debut de la transaction :
-				cnx.setAutoCommit(false);
 
 				// ********************
 				// Ajout dans la table UTILISATEUR
@@ -50,6 +48,8 @@ public class UtilisateurDAOJdbcImpl {
 				// Execution de la requete
 				pstmt.executeUpdate();
 
+				// cnx.commit();
+
 				// Récupération de l'ID généré pour l'utilisateur
 				ResultSet rs = pstmt.getGeneratedKeys();
 				if (rs.next()) {
@@ -73,6 +73,7 @@ public class UtilisateurDAOJdbcImpl {
 
 	public void update(Utilisateur utilisateur) {
 
+		// Sans paramètres, c'est pas la peine.
 		if (utilisateur == null) {
 			return;
 		}
@@ -80,12 +81,10 @@ public class UtilisateurDAOJdbcImpl {
 		try (Connection cnx = ConnectionProvider.getConnection()) // la connexion va être automatiquement fermée
 		{
 			try {
-				// Debut de la transaction :
-				cnx.setAutoCommit(false);
-
 				// ********************
 				// Ajout dans la table UTILISATEUR
 
+				// Recherche par noUtilisateur dans la requête SQL
 				PreparedStatement pstmt = cnx.prepareStatement("UPDATE UTILISATEURS\r\n"
 						+ "SET pseudo = ?, nom = ?, prenom = ?, email = ?, telephone = ?, \r\n"
 						+ "rue = ?,  code_postal = ?, ville = ?, mot_de_passe = ?,\r\n"
@@ -113,9 +112,6 @@ public class UtilisateurDAOJdbcImpl {
 			} catch (Exception e) {
 				// Journalisation
 				e.printStackTrace();
-
-				// Il y a eu une probleme => transaction annulée
-				cnx.rollback();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

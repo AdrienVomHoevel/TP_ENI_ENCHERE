@@ -23,7 +23,6 @@ public class servletRechercher extends HttpServlet {
 		// Lecture du choix. (Fonctionnel !)
 		choixCategorie = request.getParameter("categories");
 		rechercheUtilisateur = request.getParameter("saisieUtilisateur");
-		System.out.println(rechercheUtilisateur);
 
 		// Si tout s'est bien passé, afficher le resultat de la recherche
 		RequestDispatcher rd = request.getRequestDispatcher("/accueil");
