@@ -11,8 +11,15 @@
 </head>
 <body>
 	<h1>ENI-Enchères</h1>
-	<a href="<c:url value="/inscription" />">S'incrire</a> -
-	<a href="<c:url value="/seconnecter" />">Se connecter</a>
+	<c:if test="${ empty sessionScope.pseudo }">
+		<a href="<c:url value="/seconnecter" />">S'incrire - Se connecter</a>
+	</c:if>
+	<c:if test="${ !empty sessionScope.pseudo }">
+		<a href="#">Enchères</a>
+		<a href="<c:url value="/nouvelle_vente" />">Vendre un article</a>
+		<a href="#">Mon profil</a>
+		<a href="#">Déconnexion</a>
+	</c:if>
 	<h2>Liste des enchères</h2>
 	<form action="<c:url value="/rechRapide" />" method="post">
 		<input name="saisieUtilisateur" type="text"
