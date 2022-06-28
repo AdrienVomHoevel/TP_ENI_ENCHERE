@@ -3,6 +3,8 @@ package fr.eni.tp.enchere.dal.jdbc;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import fr.eni.javaee.suividesrepas.bo.Repas;
 import fr.eni.tp.enchere.bo.Utilisateur;
@@ -126,12 +128,10 @@ public class UtilisateurDAOJdbcImpl {
 
 	}
 
-	public void selectUser(Utilisateur utilisateur) {
+	public List<Utilisateur> selectUser() {
 
-		// s'il n'y a pas de parametre, cela ne sert à rien de continuer.
-		if (utilisateur == null) {
-			return;
-		}
+		List<Utilisateur> listeUtilisateurs = new ArrayList<Utilisateur>();
+		Utilisateur utilisateurAjout = new Utilisateur();
 
 		try (Connection cnx = ConnectionProvider.getConnection()) // la connexion va être automatiquement fermée
 		{
@@ -140,25 +140,30 @@ public class UtilisateurDAOJdbcImpl {
 				// ********************
 				// Ajout dans la table UTILISATEUR
 
-				PreparedStatement pstmt = cnx
-						.prepareStatement("INSERT INTO UTILISATEURS VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+				PreparedStatement pstmt = cnx.prepareStatement("SELECT no_utilisateur\r\n" + "      ,pseudo\r\n"
+						+ "      ,nom\r\n" + "      ,prenom\r\n" + "      ,email\r\n" + "      ,telephone\r\n"
+						+ "      ,rue\r\n" + "      ,code_postal\r\n" + "      ,ville\r\n" + "      ,mot_de_passe\r\n"
+						+ "      ,credit\r\n" + "      ,administrateur FROM UTILISATEURS");
 
+				ResultSet rs = pstmt.executeQuery();
 				// Valorisation des parametres du PreparedStatement
-				Utilisateur utilisateurVoulu = new Utilisateur();
 
-				utilisateurVoulu.setIdentifiant(rs.getInt("id_repas"));
-				utilisateurVoulu.setDate(rs.getDate("date_repas").toLocalDate());
-				utilisateurVoulu.setHeure(rs.getTime("heure_repas").toLocalTime());
-				utilisateurVoulu.getEmail();
-				utilisateurVoulu.getTelephone()
-				utilisateurVoulu.getRue();
-				utilisateurVoulu.getCodePostal();
-				utilisateurVoulu
-				utilisateurVoulu
-				utilisateurVoulu
-
-				return utilisateurVoulu;
-
+				while (rs.next()) {
+					// Pour chaque nouvel identifiant d'utilisateur
+					if (rs.getInt("no_utilisateur") != utilisateurAjout.getNoUtilisateur()) {
+						utilisateurAjout.setPseudo(rs.getString("pseudo"));
+						utilisateurAjout.setNom(rs.getString("nom"));
+						utilisateurAjout.setPrenom(rs.getString("prenom"));
+						utilisateurAjout.setEmail(rs.getString("email"));
+						utilisateurAjout.setTelephone(rs.getString("telephone"));
+						utilisateurAjout.setRue(rs.getString("rue"));
+						utilisateurAjout.setCodePostal(rs.getString("code_postal"));
+						utilisateurAjout.setVille(rs.getString("ville"));
+						utilisateurAjout.setMotDePasse(rs.getString("mot_de_passe"));
+						utilisateurAjout.setAdministrateur(rs.getBoolean("administrateur"));
+					}
+					listeUtilisateurs.add(utilisateurAjout);
+				}
 				// Execution de la requete
 				pstmt.executeUpdate();
 				// Fermeture de la requete
@@ -174,6 +179,7 @@ public class UtilisateurDAOJdbcImpl {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return listeUtilisateurs;
 
 	}
 }
