@@ -32,13 +32,15 @@ public class GestionProfils extends HttpServlet {
 		/***********
 		 * Simulation DAL pour récupérer une Liste d'utilisateurs
 		 ************/
-		/*
-		 * // Création d'une liste d'utilisateur List<Utilisateur> listeUtilisateur =
-		 * new ArrayList<Utilisateur>(); // Connexion UtilisateurDAOJdbcImpl connexionDB
-		 * = new UtilisateurDAOJdbcImpl(); // Faire la liste d'utilisateurs avec ce que
-		 * contient la BDD listeUtilisateur = connexionDB.selectUser();
-		 * System.out.println(listeUtilisateur.toString());
-		 */
+
+//		// Création d'une liste d'utilisateur
+//		List<Utilisateur> listeUtilisateur = new ArrayList<Utilisateur>();
+//		// Connexion
+//		UtilisateurDAOJdbcImpl connexionDB = new UtilisateurDAOJdbcImpl();
+//		// Faire la liste d'utilisateurs avec ce que contient la BDD
+//		listeUtilisateur = connexionDB.selectUser();
+//		System.out.println(listeUtilisateur.toString());
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
