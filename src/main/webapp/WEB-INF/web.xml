@@ -28,7 +28,7 @@
 		<servlet-name>JSP_INSCRIPTION</servlet-name>
 		<url-pattern>/inscription</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>JSP_NOUVELLEVENTE</servlet-name>
 		<jsp-file>/WEB-INF/jsp/NouvelleVente.jsp</jsp-file>
@@ -38,15 +38,25 @@
 		<servlet-name>JSP_NOUVELLEVENTE</servlet-name>
 		<url-pattern>/nouvelle_vente</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>SERV_NOUVELLEVENTE</servlet-name>
 		<servlet-class>fr.eni.tp.enchere.bll.servletNouvelleVente</servlet-class>
 	</servlet>
-	
+
 	<servlet-mapping>
 		<servlet-name>SERV_NOUVELLEVENTE</servlet-name>
 		<url-pattern>/routeservletnouvellevente</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>JSP_CONNEXION</servlet-name>
+		<jsp-file>/WEB-INF/jsp/connexion.jsp</jsp-file>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>JSP_CONNEXION</servlet-name>
+		<url-pattern>/connexionSession</url-pattern>
 	</servlet-mapping>
 
 </web-app>

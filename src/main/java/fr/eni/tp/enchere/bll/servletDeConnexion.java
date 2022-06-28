@@ -23,6 +23,10 @@ public class servletDeConnexion extends HttpServlet {
 		saisieIdentifiant = request.getParameter("saisieIdentifiant");
 		saisieMotDePasse = request.getParameter("saisieMotDePasse");
 
+		System.out.println(saisieIdentifiant);
+		System.out.println(saisieMotDePasse);
+		// TODO Vérification de l'utilisateur sur la BDD et récupération de ses
+		// informations.
 		// TODO Utiliser un cookie pour le se souvenir checkbox
 		// TODO savoir que la session est en mode connecté
 
