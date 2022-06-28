@@ -16,6 +16,11 @@ public class servletDeConnexion extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		// Lire les informations
 		String saisieIdentifiant = null;
 		String saisieMotDePasse = null;
@@ -23,8 +28,6 @@ public class servletDeConnexion extends HttpServlet {
 		saisieIdentifiant = request.getParameter("saisieIdentifiant");
 		saisieMotDePasse = request.getParameter("saisieMotDePasse");
 
-		System.out.println(saisieIdentifiant);
-		System.out.println(saisieMotDePasse);
 		// TODO Vérification de l'utilisateur sur la BDD et récupération de ses
 		// informations.
 		// TODO Utiliser un cookie pour le se souvenir checkbox
@@ -33,11 +36,6 @@ public class servletDeConnexion extends HttpServlet {
 		// Si tout s'est bien passé, afficher l'accueil en mode connecté
 		RequestDispatcher rd = request.getRequestDispatcher("/accueil");
 		rd.forward(request, response);
-
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
 	}
 
 }
