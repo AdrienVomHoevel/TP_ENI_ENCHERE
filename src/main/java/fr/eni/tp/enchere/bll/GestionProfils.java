@@ -16,18 +16,18 @@ public class GestionProfils extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// Simulation de test pour la DAL
+		Utilisateur ajoutTest = new Utilisateur(0, "Jeannnot", "Nono", "Jean", "Jno@gmail.fr", "0678904567",
+				"Amiral Durant", "56780", "Saint-Jean", "mdpDeNon0", 500, false);
+		// Appel de la DAL
+		UtilisateurDAOJdbcImpl connexionDB = new UtilisateurDAOJdbcImpl();
+		// Ajout de l'utilisateur
+		connexionDB.insert(ajoutTest);
+		System.out.println("test de la conexion à la DAL" + ajoutTest.toString());
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		// Simulation de test pour la DAL
-		Utilisateur ajoutTest = new Utilisateur(3, "Jeannnot", "Nono", "Jean", "Jno@gmail.fr", "0678904567",
-				"Amiral Durant", "56780", "Saint-Jean", "mdpDeNon0", 500, false);
-// Appel de la DAL
-		UtilisateurDAOJdbcImpl connexionDB = new UtilisateurDAOJdbcImpl();
-// Ajout de l'utilisateur
-		connexionDB.insert(ajoutTest);
-		System.out.println("test de la conexion à la DAL" + ajoutTest.toString());
+		doGet(request, response);
 	}
 }
