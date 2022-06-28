@@ -56,7 +56,7 @@
 
 	<servlet-mapping>
 		<servlet-name>JSP_CONNEXION</servlet-name>
-		<url-pattern>/connexionSession</url-pattern>
+		<url-pattern>/seconnecter</url-pattern>
 	</servlet-mapping>
 
 </web-app>

@@ -12,7 +12,7 @@
 <body>
 	<h1>ENI-Enchères</h1>
 	<a href="<c:url value="/inscription" />">S'incrire</a> -
-	<a href="<c:url value="/connexion" />">Se connecter</a>
+	<a href="<c:url value="/seconnecter" />">Se connecter</a>
 	<h2>Liste des enchères</h2>
 	<form action="<c:url value="/rechRapide" />" method="post">
 		<input name="saisieUtilisateur" type="text"
