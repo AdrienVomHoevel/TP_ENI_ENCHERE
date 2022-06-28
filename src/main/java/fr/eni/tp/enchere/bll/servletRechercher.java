@@ -18,9 +18,11 @@ public class servletRechercher extends HttpServlet {
 
 		// Lire les informations
 		String choixCategorie = null;
+		String rechercheUtilisateur = null;
 
 		// Lecture du choix. (Fonctionnel !)
 		choixCategorie = request.getParameter("categories");
+		rechercheUtilisateur = request.getParameter(rechercheUtilisateur)
 
 		// Si tout s'est bien passé, afficher le resultat de la recherche
 		RequestDispatcher rd = request.getRequestDispatcher("/accueil");
