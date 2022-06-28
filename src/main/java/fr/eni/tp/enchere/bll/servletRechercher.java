@@ -20,10 +20,10 @@ public class servletRechercher extends HttpServlet {
 		String choixCategorie = null;
 		String rechercheUtilisateur = null;
 
-		// Lecture du choix. (Fonctionnel !)
 		choixCategorie = request.getParameter("categories");
 		rechercheUtilisateur = request.getParameter("saisieUtilisateur");
 
+		// TODO Faire un retour des choix sur l'accueil
 		// Si tout s'est bien passé, afficher le resultat de la recherche
 		RequestDispatcher rd = request.getRequestDispatcher("/accueil");
 		rd.forward(request, response);

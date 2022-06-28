@@ -10,20 +10,23 @@
 <title>Inscription</title>
 </head>
 <body>
-	<form action="">
-		<label for="">Pseudo: </label> <input type="text" id="saisiePseudo" />
-		<label for="saisieNom">Nom:</label> <input type="text" id="saisieNom" />
-		<label for="saisiePrenom">Prénom:</label> <input type="text"
-			id="saisiePrenom" /> <label for="">Email:</label> <input type="text"
-			id="saisiePseudo" /> <label for="">Téléphone:</label> <input
-			type="text" id="saisiePseudo" /> <label for="saisieRue">Rue:</label>
-		<input type="text" id="saisieRue" /> <label for="saisieCodePostal">Code
-			postal:</label> <input type="text" id="saisieCodePostal" /> <label
-			for="saisieVille">Ville:</label> <input type="password"
-			id="saisieVille" /> <label for="saisieMotDePasse">Mot de
-			passe:</label> <input type="text" id="saisieMotDePasse" /> <label
-			for="saisieComfirmationMotDePasse">Comfirmation:</label> <input
-			type="password" id="saisieComfirmationMotDePasse" />
+	<form action="<c:url value="/servLog" />" method="post">
+		<label for="">Pseudo: </label> <input name="saisiePseudo" type="text"
+			id="saisiePseudo" /> <label for="saisieNom">Nom:</label> <input
+			name="saisieNom" type="text" id="saisieNom" /> <label
+			for="saisiePrenom">Prénom:</label> <input name="saisiePrenom"
+			type="text" id="saisiePrenom" /> <label for="">Email:</label> <input
+			name="saisieEmail" type="text" id="saisiePseudo" /> <label for="">Téléphone:</label>
+		<input name="saisieTelephone" type="text" id="saisiePseudo" /> <label
+			for="saisieRue">Rue:</label> <input name="saisieRue" type="text"
+			id="saisieRue" /> <label for="saisieCodePostal">Code postal:</label>
+		<input name="saisieCodePostal" type="text" id="saisieCodePostal" /> <label
+			for="saisieVille">Ville:</label> <input name="saisieVille"
+			type="text" id="saisieVille" /> <label for="saisieMotDePasse">Mot
+			de passe:</label> <input name="saisieMotDePasse" type="password"
+			id="saisieMotDePasse" /> <label for="saisieComfirmationMotDePasse">Comfirmation:</label>
+		<input name="saisieComfirmation" type="password"
+			id="saisieComfirmationMotDePasse" />
 		<button type="submit">Créer</button>
 	</form>
 	<a href="/accueil"><button>Annuler</button></a>
