@@ -59,4 +59,14 @@
 		<url-pattern>/seconnecter</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>JSP_PROFIL</servlet-name>
+		<jsp-file>/WEB-INF/jsp/profil.jsp</jsp-file>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>JSP_PROFIL</servlet-name>
+		<url-pattern>/profilUtilisateur</url-pattern>
+	</servlet-mapping>
+
 </web-app>

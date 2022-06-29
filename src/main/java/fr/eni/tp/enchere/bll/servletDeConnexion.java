@@ -38,7 +38,7 @@ public class servletDeConnexion extends HttpServlet {
 		List<Utilisateur> listeUtilisateur = new ArrayList<Utilisateur>();
 		// Connexion
 		UtilisateurDAOJdbcImpl connexionDB = new UtilisateurDAOJdbcImpl();
-		// Faire la liste d'utilisateurs avec ce que contient la BDD
+		// Génère la liste des utilisateurs
 		listeUtilisateur = connexionDB.selectUser();
 		// Parcourir la liste des utilisateurs jusqu'à ce que ça corresponde
 		for (Utilisateur user : listeUtilisateur) {
@@ -49,6 +49,8 @@ public class servletDeConnexion extends HttpServlet {
 				HttpSession session = request.getSession();
 				// Garder en mémoire l'information de pseudo (ou identifiant)
 				session.setAttribute("pseudo", saisieIdentifiant);
+				// La session garde en mémoire les informations sur l'utilisateur.
+				session.setAttribute("Utilisateur", user);
 			} else {
 				// TODO Ameliorer le renvoi sur la page de connection en gardant le nom
 				// d'utilisateur si il correspond ou en précisant que le nom d'utilisateur n'est
