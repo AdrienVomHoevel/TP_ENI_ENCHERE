@@ -12,6 +12,7 @@
 	href="${pageContext.request.contextPath}/CSS/style.css" />
 </head>
 <body>
+<<<<<<< HEAD
 	<div class="cTitreAccueil">
 		<div class="cTitre">
 			<h1>ENI-Enchères</h1>
@@ -23,11 +24,17 @@
 			</c:if>
 		</div>
 	</div>
+=======
+	<h1>ENI-Enchères</h1>
+	<c:if test="${ empty sessionScope.pseudo }">
+		<a href="<c:url value="/seconnecter" />">S'incrire - Se connecter</a>
+	</c:if>
+>>>>>>> branch 'main' of https://github.com/AdrienVomHoevel/TP_ENI_ENCHERE.git
 
 	<c:if test="${ !empty sessionScope.pseudo }">
 		<a href="#">Enchères</a>
 		<a href="<c:url value="/nouvelle_vente" />">Vendre un article</a>
-		<a href="#">Mon profil</a>
+		<a href="<c:url value="/verifProfil" />">Mon profil</a>
 		<a href="<c:url value="/sedeconnecter" />  ">Déconnexion</a>
 	</c:if>
 	<div class="cListeEnchere">

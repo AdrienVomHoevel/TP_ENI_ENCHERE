@@ -25,14 +25,11 @@ public class servletProfil extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		System.out.println("passage dans la servletProfil");
 		// Récupère les information de la session
 		HttpSession session = request.getSession();
 		String pseudoSession = (String) session.getAttribute("pseudo");
 		String mdpSession = (String) session.getAttribute("mdp");
-		// Créer un nouvel Utilisateur
-		Utilisateur profilSession = new Utilisateur();
-		// Récupère la List<Utilisateur>
+
 		// Création d'une liste d'utilisateur
 		List<Utilisateur> listeUtilisateur = new ArrayList<Utilisateur>();
 		// Connexion
@@ -43,13 +40,11 @@ public class servletProfil extends HttpServlet {
 		for (Utilisateur user : listeUtilisateur) {
 			// si le pseudo et le mot de passe correspondent
 			if (user.getPseudo().equals(pseudoSession) && user.getMotDePasse().equals(mdpSession)) {
-				profilSession = user;
-				break;
+				request.setAttribute("utilisateur", user);
 			}
-			// Renvoi les information pour les affichés sur la page profil
-			RequestDispatcher rd = request.getRequestDispatcher("/profilUtilisateur");
-			rd.forward(request, response);
 		}
+		// Renvoi les information pour les affichés sur la page profil
+		getServletContext().getRequestDispatcher("/profilUtilisateur").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
