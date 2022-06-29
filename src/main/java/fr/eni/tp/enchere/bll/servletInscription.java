@@ -59,8 +59,8 @@ public class servletInscription extends HttpServlet {
 					saisieTelephone, saisieRue, saisieCodePostal, saisieVille, saisieMotDePasse, 0, false);
 
 			connexionDB.insert(utilisateurAjout);
-			// TODO Retourner à l'accueil puis mettre la session en mode connectée
-			RequestDispatcher rd = request.getRequestDispatcher("/accueil");
+			// La personne inscrite est dirigée sur son profil utilisateur.
+			RequestDispatcher rd = request.getRequestDispatcher("/profilUtilisateur");
 			rd.forward(request, response);
 		} else {
 			// TODO retourner sur la création du profil en indiquant l'erreur au niveau du
