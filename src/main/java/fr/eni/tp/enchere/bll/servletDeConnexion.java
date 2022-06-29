@@ -62,8 +62,8 @@ public class servletDeConnexion extends HttpServlet {
 		// TODO Ameliorer le renvoi sur la page de connection en gardant le nom
 		// d'utilisateur si il correspond ou en précisant que le nom d'utilisateur n'est
 		// pas bon non plus.
-		RequestDispatcher rd = request.getRequestDispatcher("/seconnecter");
-		rd.forward(request, response);
+//		RequestDispatcher rd = request.getRequestDispatcher("/seconnecter");
+//		rd.forward(request, response);
 
 	}
 

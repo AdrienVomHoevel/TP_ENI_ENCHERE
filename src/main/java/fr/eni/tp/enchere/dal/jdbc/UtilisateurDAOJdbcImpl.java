@@ -163,8 +163,7 @@ public class UtilisateurDAOJdbcImpl {
 					}
 					listeUtilisateurs.add(utilisateurAjout);
 				}
-				// Execution de la requete
-				pstmt.executeUpdate();
+
 				// Fermeture de la requete
 				pstmt.close();
 
