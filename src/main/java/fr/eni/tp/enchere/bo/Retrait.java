@@ -3,10 +3,10 @@ package fr.eni.tp.enchere.bo;
 public class Retrait {
 
 	private String rue;
-	private int code_postal;
+	private String code_postal;
 	private String ville;
 
-	public Retrait(String rue, int code_postal, String ville) {
+	public Retrait(String rue, String code_postal, String ville) {
 		super();
 		this.rue = rue;
 		this.code_postal = code_postal;
@@ -21,11 +21,11 @@ public class Retrait {
 		this.rue = rue;
 	}
 
-	public int getCode_postal() {
+	public String getCode_postal() {
 		return code_postal;
 	}
 
-	public void setCode_postal(int code_postal) {
+	public void setCode_postal(String code_postal) {
 		this.code_postal = code_postal;
 	}
 
