@@ -10,8 +10,12 @@
 <title>profil</title>
 </head>
 <body>
+
+<%-- <jsp:useBean id="concertX" scope="request"
+		class="fr.eni.javaee.demo.concert.bo.Concert"></jsp:useBean> --%>
+
 	<h1>ENI-Enchères</h1>
-	<label for="">Pseudo:</label>
+	<label for="">Pseudo:${ profilSession.pseudo }</label>
 	<label for="">Nom:</label>
 	<label for="">Prénom:</label>
 	<label for="">Email:</label>

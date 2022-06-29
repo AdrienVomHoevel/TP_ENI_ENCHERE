@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.tp.enchere.bo.Utilisateur;
 import fr.eni.tp.enchere.dal.jdbc.UtilisateurDAOJdbcImpl;
@@ -53,12 +54,19 @@ public class servletInscription extends HttpServlet {
 		saisieMotDePasse = request.getParameter("saisieMotDePasse");
 		saisieComfirmation = request.getParameter("saisieComfirmation");
 
+		// TODO vérifier que le profil n'existe pas en BDD
+
 		// Si le mot de passe et la comfirmation sont identiques
 		if (saisieMotDePasse.equals(saisieComfirmation)) {
 			Utilisateur utilisateurAjout = new Utilisateur(saisiePseudo, saisieNom, saisiePrenom, saisieEmail,
 					saisieTelephone, saisieRue, saisieCodePostal, saisieVille, saisieMotDePasse, 0, false);
 
 			connexionDB.insert(utilisateurAjout);
+			HttpSession session = request.getSession();
+
+			session.setAttribute("pseudo", saisiePseudo);
+			session.setAttribute("mdp", saisieMotDePasse);
+
 			// La personne inscrite est dirigée sur son profil utilisateur.
 			RequestDispatcher rd = request.getRequestDispatcher("/profilUtilisateur");
 			rd.forward(request, response);
