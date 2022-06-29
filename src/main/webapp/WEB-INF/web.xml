@@ -68,5 +68,16 @@
 		<servlet-name>JSP_PROFIL</servlet-name>
 		<url-pattern>/profilUtilisateur</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>SERV_DECONNEXION</servlet-name>
+		<servlet-class>fr.eni.tp.enchere.bll.ServletPourDeconnexion</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>SERV_DECONNEXION</servlet-name>
+		<url-pattern>/sedeconnecter</url-pattern>
+	</servlet-mapping>
+
 
 </web-app>

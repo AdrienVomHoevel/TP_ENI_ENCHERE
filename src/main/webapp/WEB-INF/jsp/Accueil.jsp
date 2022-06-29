@@ -18,7 +18,7 @@
 		<a href="#">Enchères</a>
 		<a href="<c:url value="/nouvelle_vente" />">Vendre un article</a>
 		<a href="#">Mon profil</a>
-		<a href="#">Déconnexion</a>
+		<a href="<c:url value="/sedeconnecter" />  ">Déconnexion</a>
 	</c:if>
 	<h2>Liste des enchères</h2>
 	<form action="<c:url value="/rechRapide" />" method="post">

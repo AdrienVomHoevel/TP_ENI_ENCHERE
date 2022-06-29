@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.eni.javaee.suividesrepas.bo.Repas;
 import fr.eni.tp.enchere.bo.Utilisateur;
 
 public class UtilisateurDAOJdbcImpl {
