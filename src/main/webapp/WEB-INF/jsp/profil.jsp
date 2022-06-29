@@ -22,5 +22,7 @@
 	<p>Rue: ${ requestScope.utilisateur.rue }</p>
 	<p>Code postal: ${ requestScope.utilisateur.codePostal }</p>
 	<p>Ville: ${ requestScope.utilisateur.ville }</p>
+
+	<a href="<c:url value="/inscription" />"><button>Modifier</button></a>
 </body>
 </html>

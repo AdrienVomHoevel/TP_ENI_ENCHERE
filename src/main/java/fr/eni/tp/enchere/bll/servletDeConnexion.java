@@ -50,6 +50,7 @@ public class servletDeConnexion extends HttpServlet {
 				// Garder en mémoire l'information de pseudo (ou identifiant)
 				session.setAttribute("pseudo", saisieIdentifiant);
 				session.setAttribute("mdp", saisieMotDePasse);
+				session.setAttribute("noutilisateur", user.getNoUtilisateur());
 				// La session garde en mémoire les informations sur l'utilisateur.
 				// TODO Utiliser un cookie pour le se souvenir checkbox
 

@@ -12,7 +12,7 @@
 	href="${pageContext.request.contextPath}/CSS/style.css" />
 </head>
 <body>
-<<<<<<< HEAD
+
 	<div class="cTitreAccueil">
 		<div class="cTitre">
 			<h1>ENI-Enchères</h1>
@@ -24,12 +24,12 @@
 			</c:if>
 		</div>
 	</div>
-=======
+
 	<h1>ENI-Enchères</h1>
 	<c:if test="${ empty sessionScope.pseudo }">
 		<a href="<c:url value="/seconnecter" />">S'incrire - Se connecter</a>
 	</c:if>
->>>>>>> branch 'main' of https://github.com/AdrienVomHoevel/TP_ENI_ENCHERE.git
+
 
 	<c:if test="${ !empty sessionScope.pseudo }">
 		<a href="#">Enchères</a>
@@ -53,7 +53,8 @@
 				placeholder="Le nom de l'article contient" value="${ param.saisie }" />
 
 			<div class="cchoix">
-				<label class="clabelcategorie" for="list-categorie">Catégorie : </label>
+				<label class="clabelcategorie" for="list-categorie">Catégorie
+					: </label>
 				<div class="cchxoicategories">
 					<select name="categories" id="list-categorie">
 						<option value="">---Selectionnez une catégorie---</option>
