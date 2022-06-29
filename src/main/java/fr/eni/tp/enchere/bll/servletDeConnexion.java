@@ -50,7 +50,7 @@ public class servletDeConnexion extends HttpServlet {
 				// Garder en mémoire l'information de pseudo (ou identifiant)
 				session.setAttribute("pseudo", saisieIdentifiant);
 				// La session garde en mémoire les informations sur l'utilisateur.
-				session.setAttribute("Utilisateur", user);
+
 			} else {
 				// TODO Ameliorer le renvoi sur la page de connection en gardant le nom
 				// d'utilisateur si il correspond ou en précisant que le nom d'utilisateur n'est
@@ -64,7 +64,7 @@ public class servletDeConnexion extends HttpServlet {
 		// TODO savoir que la session est en mode connecté
 
 		// Si tout s'est bien passé, afficher l'accueil en mode connecté
-		RequestDispatcher rd = request.getRequestDispatcher("/accueil");
+		RequestDispatcher rd = request.getRequestDispatcher("/profilUtilisateur");
 		rd.forward(request, response);
 	}
 

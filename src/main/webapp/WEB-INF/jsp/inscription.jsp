@@ -29,6 +29,6 @@
 			id="saisieComfirmationMotDePasse" />
 		<button type="submit">Créer</button>
 	</form>
-	<a href="/accueil"><button>Annuler</button></a>
+	<a href="<c:url value="/seconnecter" />"><button>Annuler</button></a>
 </body>
 </html>

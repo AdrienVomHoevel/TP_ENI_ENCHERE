@@ -11,7 +11,7 @@
 </head>
 <body>
 	<h1>ENI-Enchères</h1>
-	<label for="">Pseudo:${sessionScope.Utilisateur.getPseudo()}</label>
+	<label for="">Pseudo:</label>
 	<label for="">Nom:</label>
 	<label for="">Prénom:</label>
 	<label for="">Email:</label>
