@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Accueil ENI-Enchères</title>
+ <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/style.css" />
 </head>
 <body>
 	<h1>ENI-Enchères</h1>

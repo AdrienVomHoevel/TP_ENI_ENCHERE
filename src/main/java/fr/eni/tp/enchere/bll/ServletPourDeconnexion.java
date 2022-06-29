@@ -27,7 +27,7 @@ public class ServletPourDeconnexion extends HttpServlet {
 		HttpSession session = request.getSession(); 
 		session.invalidate();
 		
-		System.out.println("Session invalidée");
+		
 		request.getRequestDispatcher("/accueil").forward(request, response);
 	}
 
