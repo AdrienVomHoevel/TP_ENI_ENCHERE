@@ -173,8 +173,6 @@ public class UtilisateurDAOJdbcImpl {
 				// Journalisation
 				e.printStackTrace();
 
-				// Il y a eu une probleme => transaction annulée
-				cnx.rollback();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
