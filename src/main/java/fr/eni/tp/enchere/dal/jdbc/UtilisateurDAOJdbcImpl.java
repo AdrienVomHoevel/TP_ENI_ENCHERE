@@ -130,7 +130,6 @@ public class UtilisateurDAOJdbcImpl {
 	public List<Utilisateur> selectUser() {
 
 		List<Utilisateur> listeUtilisateurs = new ArrayList<Utilisateur>();
-		Utilisateur utilisateurAjout = new Utilisateur();
 
 		try (Connection cnx = ConnectionProvider.getConnection()) // la connexion va être automatiquement fermée
 		{
@@ -148,6 +147,7 @@ public class UtilisateurDAOJdbcImpl {
 				// Valorisation des parametres du PreparedStatement
 
 				while (rs.next()) {
+					Utilisateur utilisateurAjout = new Utilisateur();
 					// Pour chaque nouvel identifiant d'utilisateur
 					if (rs.getInt("no_utilisateur") != utilisateurAjout.getNoUtilisateur()) {
 						utilisateurAjout.setPseudo(rs.getString("pseudo"));

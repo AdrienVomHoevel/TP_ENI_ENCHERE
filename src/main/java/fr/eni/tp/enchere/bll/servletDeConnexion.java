@@ -40,33 +40,31 @@ public class servletDeConnexion extends HttpServlet {
 		UtilisateurDAOJdbcImpl connexionDB = new UtilisateurDAOJdbcImpl();
 		// Génère la liste des utilisateurs
 		listeUtilisateur = connexionDB.selectUser();
+
 		// Parcourir la liste des utilisateurs jusqu'à ce que ça corresponde
 		for (Utilisateur user : listeUtilisateur) {
 			// si le pseudo et le mot de passe correspondent
 			if (user.getPseudo().equals(saisieIdentifiant) && user.getMotDePasse().equals(saisieMotDePasse)) {
-				// TODO connecter l'utilisateur
 				// Initialisation du moteur de session J2EE
 				HttpSession session = request.getSession();
 				// Garder en mémoire l'information de pseudo (ou identifiant)
 				session.setAttribute("pseudo", saisieIdentifiant);
 				session.setAttribute("mdp", saisieMotDePasse);
 				// La session garde en mémoire les informations sur l'utilisateur.
+				// TODO Utiliser un cookie pour le se souvenir checkbox
 
-			} else {
-				// TODO Ameliorer le renvoi sur la page de connection en gardant le nom
-				// d'utilisateur si il correspond ou en précisant que le nom d'utilisateur n'est
-				// pas bon non plus.
-				RequestDispatcher rd = request.getRequestDispatcher("/seconnecter");
+				// Si tout s'est bien passé, afficher l'accueil en mode connecté
+				RequestDispatcher rd = request.getRequestDispatcher("/accueil");
 				rd.forward(request, response);
-				break;
+
 			}
 		}
-		// TODO Utiliser un cookie pour le se souvenir checkbox
-		// TODO savoir que la session est en mode connecté
-
-		// Si tout s'est bien passé, afficher l'accueil en mode connecté
-		RequestDispatcher rd = request.getRequestDispatcher("/accueil");
+		// TODO Ameliorer le renvoi sur la page de connection en gardant le nom
+		// d'utilisateur si il correspond ou en précisant que le nom d'utilisateur n'est
+		// pas bon non plus.
+		RequestDispatcher rd = request.getRequestDispatcher("/seconnecter");
 		rd.forward(request, response);
+
 	}
 
 }
