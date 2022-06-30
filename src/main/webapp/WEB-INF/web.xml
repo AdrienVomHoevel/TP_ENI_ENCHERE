@@ -58,8 +58,8 @@
 		<servlet-name>JSP_CONNEXION</servlet-name>
 		<url-pattern>/seconnecter</url-pattern>
 	</servlet-mapping>
-	
-		<!-- Pour est de la DAL - Adrien Alva -->
+
+	<!-- Pour est de la DAL - Adrien Alva -->
 	<servlet>
 		<servlet-name>DALTesting</servlet-name>
 		<servlet-class>fr.eni.tp.enchere.dal.jdbc.DALTesting</servlet-class>
@@ -70,8 +70,16 @@
 		<url-pattern>/daltesting</url-pattern>
 	</servlet-mapping>
 	<!-- END OF TEST DAL -->
-	
 
-	
+	<servlet>
+		<servlet-name>JSP_PROFIL</servlet-name>
+		<jsp-file>/WEB-INF/jsp/profil.jsp</jsp-file>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>JSP_PROFIL</servlet-name>
+		<url-pattern>/profilUtilisateur</url-pattern>
+	</servlet-mapping>
+
 
 </web-app>
