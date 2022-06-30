@@ -96,10 +96,10 @@ public class servletNouvelleVente extends HttpServlet {
 		Article nouvelArticle = new Article(nomArticle, description, dateDebutparse, dateFinparse, newmiseaprix,
 				vendeur, categories, rueRetrait, codepostal, ville);
 		ArticleVenduDAOJdbcImpl mettreEnVente = new ArticleVenduDAOJdbcImpl();
-		
+
 		mettreEnVente.insertArticleVendu(nouvelArticle);
 
-		RequestDispatcher rd = request.getRequestDispatcher("/nouvelle_vente");
+		RequestDispatcher rd = request.getRequestDispatcher("/detailVente");
 		rd.forward(request, response);
 	}
 

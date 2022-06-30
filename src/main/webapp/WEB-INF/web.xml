@@ -83,7 +83,7 @@
 
 	<servlet>
 		<servlet-name>JSP_DETAIL_VENTE</servlet-name>
-		<jsp-file>/WEB-INF/jsp/profil.jsp</jsp-file>
+		<jsp-file>/WEB-INF/jsp/détailVente.jsp</jsp-file>
 	</servlet>
 
 	<servlet-mapping>
