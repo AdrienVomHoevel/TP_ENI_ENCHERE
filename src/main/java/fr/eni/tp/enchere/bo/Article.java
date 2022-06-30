@@ -1,6 +1,7 @@
 package fr.eni.tp.enchere.bo;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import fr.eni.tp.enchere.dal.jdbc.CategorieDAOJdbcImpl;
 
@@ -17,6 +18,7 @@ public class Article {
 	private Utilisateur vendeur;
 	private Categorie categorie;
 	private Retrait retrait;
+	private ArrayList<Enchere> encheres;
 	
 	//utilitaire
 	private CategorieDAOJdbcImpl categorieDAO; // pour requeter le numero des categorie en BDD à partir du libelle
@@ -25,10 +27,16 @@ public class Article {
 	/**
 	 * Constructeur sans noArticle
 	 **/
-	public Article(String nomArticle, String description, LocalDate dateDebutEncheres,
-					LocalDate dateFinEncheres, int miseAPrix,
-					Utilisateur vendeur, String categorie,
-					String rue, String codePostal, String ville){	
+	public Article( String nomArticle, 
+					String description, 
+					LocalDate dateDebutEncheres,
+					LocalDate dateFinEncheres, 
+					int miseAPrix,
+					Utilisateur vendeur, 
+					String categorie,
+					String rue, 
+					String codePostal, 
+					String ville){	
 		
 		this.categorieDAO = new CategorieDAOJdbcImpl();		
 		this.nomArticle = nomArticle;
@@ -41,11 +49,18 @@ public class Article {
 		this.retrait = setRetrait(rue, codePostal, ville);		
 	}
 
-	public Article(int noArticle, String nomArticle, 
-					String description, LocalDate dateDebutEncheres,
-					LocalDate dateFinEncheres, int miseAPrix, 
-					Utilisateur vendeur, String categorie,
-					String rue, String codePostal, String ville){
+	public Article( int noArticle, 
+					String nomArticle, 
+					String description, 
+					LocalDate dateDebutEncheres,
+					LocalDate dateFinEncheres, 
+					int miseAPrix, 
+					Utilisateur vendeur, 
+					String categorie,
+					String rue, 
+					String codePostal, 
+					String ville){
+		
 		this.categorieDAO = new CategorieDAOJdbcImpl();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
@@ -165,6 +180,14 @@ public class Article {
 		}
 		
 		return nouveauRetrait; 
+	}
+
+	public ArrayList<Enchere> getEncheres() {
+		return encheres;
+	}
+
+	public void setEncheres(ArrayList<Enchere> encheres) {
+		this.encheres = encheres;
 	}
 
 	@Override

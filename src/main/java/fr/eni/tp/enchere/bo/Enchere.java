@@ -6,15 +6,13 @@ public class Enchere {
 
 	private LocalDate dateEnchere;
 	private int montant_enchere;
-	
-	
+	private Utilisateur encherisseur;
 
-
-
-	public Enchere(LocalDate dateEnchere, int montant_enchere) {
+	public Enchere(Utilisateur encherisseur, int montant_enchere, Article articleVendu) {
 		super();
-		this.dateEnchere = dateEnchere;
+		this.dateEnchere = LocalDate.now();
 		this.montant_enchere = montant_enchere;
+		this.encherisseur = encherisseur;
 	}
 
 	public LocalDate getDateEnchere() {
@@ -33,14 +31,21 @@ public class Enchere {
 		this.montant_enchere = montant_enchere;
 	}
 
-	private void concerne() {
-		
+	public Utilisateur getEncherisseur() {
+		return encherisseur;
+	}
+
+	public void setEncherisseur(Utilisateur encherisseur) {
+		this.encherisseur = encherisseur;
 	}
 
 	@Override
 	public String toString() {
-		return "Enchere [dateEnchere=" + dateEnchere + ", montant_enchere=" + montant_enchere + "]";
+		return "Enchere [dateEnchere=" + dateEnchere + ", montant_enchere=" + montant_enchere + ", encherisseur="
+				+ encherisseur + "]";
 	}
+
+	
 	
 	
 	

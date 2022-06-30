@@ -115,13 +115,14 @@ public class ArticleVenduDAOJdbcImpl {
 		try(Connection cnx = ConnectionProvider.getConnection()) {
 			
 			try {
+				
+				cnx.setAutoCommit(false);
+				
 				Statement ordre = cnx.createStatement();
 				
 				ResultSet rs = ordre.executeQuery(REQ_SELECT_ALL_ARTICLES_VENDUS);
 				
 				while(rs.next() ) {
-					
-//				ArrayList<Article> alimentsList = new ArrayList<Article>();
 					
 					int noArticle = rs.getInt(1);
 					String nom = rs.getString("nom_article");

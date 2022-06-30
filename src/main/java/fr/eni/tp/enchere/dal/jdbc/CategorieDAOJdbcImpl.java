@@ -5,6 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+
+import fr.eni.tp.enchere.bo.Categorie;
 
 
 public class CategorieDAOJdbcImpl {
@@ -14,6 +17,9 @@ public class CategorieDAOJdbcImpl {
 	
 	private final static String REQ_SELECT_LIBELLE
 	= "SELECT libelle FROM categories WHERE no_categorie = ? ;"; 
+	
+	private final static String REQ_SELECT_ALL_CATEGORIES
+	= "SELECT no_categorie, libelle FROM categories;"; 
 	
 	
 	
@@ -51,6 +57,11 @@ public class CategorieDAOJdbcImpl {
 		
 	}// EO selectNoCategorieByLibelle()
 	
+	/**
+	 * Retourne le libelle d'une categorie en fonction du numero.
+	 * @param numero
+	 * @return
+	 */
 	public String selectLibelleCategorieByNo(int numero) {
 		
 		String libelle = null; 
@@ -79,5 +90,39 @@ public class CategorieDAOJdbcImpl {
 		return libelle;
 		
 	}// EO selectLibelleCategorieByNo()
+	
+	/**
+	 * Retourne toutes les categories avec tout leurs champs.
+	 * @returnArrayList<Categorie>
+	 */
+	public ArrayList<Categorie> selectAllCategories() {
+		
+		ArrayList<Categorie> categoriesList = new ArrayList<>(); 
+		
+		try(Connection cnx = ConnectionProvider.getConnection()) {				
+				
+			Statement ordre = cnx.createStatement();
+			
+			ResultSet rs = ordre.executeQuery(REQ_SELECT_ALL_CATEGORIES);	
+			
+			while (rs.next()) {
+				
+				int noCategorie = rs.getInt(1);
+				String libelle = rs.getString("libelle");
+				
+				Categorie categorie = new Categorie(noCategorie, libelle);
+				
+				categoriesList.add(categorie);
+				
+			}		
+			
+		} catch ( SQLException sqle) {
+			System.err.println("Erreur lors de l'éxécution de selectLibelleCategorieByNo()");
+			sqle.printStackTrace();
+		}
+		
+		return categoriesList;
+		
+	}// EO selectAllCategories()
 
 }
