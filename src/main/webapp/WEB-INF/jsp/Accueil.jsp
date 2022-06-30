@@ -25,15 +25,10 @@
 		</div>
 	</div>
 
-	<h1>ENI-Enchères</h1>
-	<c:if test="${ empty sessionScope.pseudo }">
-		<a href="<c:url value="/seconnecter" />">S'incrire - Se connecter</a>
-	</c:if>
-
-
 	<c:if test="${ !empty sessionScope.pseudo }">
 		<a href="#">Enchères</a>
-		<a href="<c:url value="/nouvelle_vente" />">Vendre un article</a>
+		<a href="<c:url value="/routeservletnouvellevente" />">Vendre un
+			article</a>
 		<a href="<c:url value="/verifProfil" />">Mon profil</a>
 		<a href="<c:url value="/sedeconnecter" />  ">Déconnexion</a>
 	</c:if>

@@ -13,9 +13,6 @@ import javax.servlet.http.HttpSession;
 import fr.eni.tp.enchere.bo.Utilisateur;
 import fr.eni.tp.enchere.dal.jdbc.UtilisateurDAOJdbcImpl;
 
-/**
- * Servlet implementation class servletInscription
- */
 @WebServlet("/servLog")
 public class servletInscription extends HttpServlet {
 	private static final long serialVersionUID = 1L;
