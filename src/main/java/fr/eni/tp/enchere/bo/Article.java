@@ -26,8 +26,7 @@ public class Article {
 	 * Constructeur sans noArticle
 	 **/
 	public Article(String nomArticle, String description, LocalDate dateDebutEncheres,
-					LocalDate dateFinEncheres, int miseAPrix, 
-					int prixVente, String statVente, 
+					LocalDate dateFinEncheres, int miseAPrix,
 					Utilisateur vendeur, String categorie,
 					String rue, String codePostal, String ville){	
 		
@@ -37,8 +36,6 @@ public class Article {
 		this.dateDebutEncheres = dateDebutEncheres;
 		this.dateFinEncheres = dateFinEncheres;
 		this.miseAPrix = miseAPrix;
-		this.prixVente = prixVente;
-		this.etatVente = statVente;
 		this.vendeur = vendeur;
 		this.categorie = setCategorie(categorie);
 		this.retrait = setRetrait(rue, codePostal, ville);		
@@ -47,9 +44,8 @@ public class Article {
 	public Article(int noArticle, String nomArticle, 
 					String description, LocalDate dateDebutEncheres,
 					LocalDate dateFinEncheres, int miseAPrix, 
-					int prixVente, String statVente, 
 					Utilisateur vendeur, String categorie,
-					String rue, int codePostal, String ville){
+					String rue, String codePostal, String ville){
 		this.categorieDAO = new CategorieDAOJdbcImpl();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
@@ -57,10 +53,9 @@ public class Article {
 		this.dateDebutEncheres = dateDebutEncheres;
 		this.dateFinEncheres = dateFinEncheres;
 		this.miseAPrix = miseAPrix;
-		this.prixVente = prixVente;
-		this.etatVente = statVente;
 		this.vendeur = vendeur;
 		this.categorie = setCategorie(categorie);	
+		this.retrait = setRetrait(rue, codePostal, ville);
 	}
 
 	public int getNoArticle() {
@@ -157,13 +152,19 @@ public class Article {
 
 	public Retrait setRetrait(String rue, String codePostal, String ville) {
 		
-		Retrait resultat = null; 
+		Retrait nouveauRetrait = null; 
 		
-		Retrait nouveauRetrait = new Retrait(rue, codePostal, ville); 
+		System.out.println(rue);
 		
-		resultat = nouveauRetrait; 
+		try {
+			if (!rue.isEmpty() && !codePostal.isEmpty() && !ville.isEmpty()) {
+				nouveauRetrait = new Retrait(rue, codePostal, ville); 
+			}
+		} catch (NullPointerException e) {
+			nouveauRetrait = new Retrait("non-définie", "non-défini", "non-définie");
+		}
 		
-		return resultat; 
+		return nouveauRetrait; 
 	}
 
 	@Override
