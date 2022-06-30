@@ -46,9 +46,14 @@
 		<button type="submit">Créer</button>
 	</c:if>
 	<c:if test="${ !empty sessionScope.pseudo }">
-		<button type="submit">Modifier</button>
+		<button type="submit">Enregistrer</button>
 	</c:if>
 	</form>
+	<c:if test="${ !empty sessionScope.pseudo }">
+		<form action="<c:url value="/supprUtilisateur" />" method="post">
+			<button type="submit">Supprimer mon compte</button>
+		</form>
+	</c:if>
 	<c:if test="${ empty sessionScope.pseudo }">
 		<a href="<c:url value="/seconnecter" />"><button>Annuler</button></a>
 	</c:if>

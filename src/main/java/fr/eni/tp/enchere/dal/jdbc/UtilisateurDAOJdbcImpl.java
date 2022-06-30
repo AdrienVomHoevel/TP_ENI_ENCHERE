@@ -123,6 +123,11 @@ public class UtilisateurDAOJdbcImpl {
 
 	}
 
+	/**
+	 * Permet de récupérer tout les utlisateurs enregistré dans la BDD
+	 * 
+	 * @return
+	 */
 	public List<Utilisateur> selectUser() {
 
 		List<Utilisateur> listeUtilisateurs = new ArrayList<Utilisateur>();
@@ -173,6 +178,35 @@ public class UtilisateurDAOJdbcImpl {
 			e.printStackTrace();
 		}
 		return listeUtilisateurs;
+
+	}
+
+	public void delete(Utilisateur utilisateur) {
+
+		try (Connection cnx = ConnectionProvider.getConnection()) // la connexion va être automatiquement fermée
+		{
+			try {
+				// ********************
+				// Modification dans la table UTILISATEUR
+				// Recherche par noUtilisateur dans la requête SQL
+				PreparedStatement pstmt = cnx.prepareStatement("DELETE FROM UTILISATEURS WHERE no_utilisateur = ? ;");
+
+				// Trouver le bon profil.
+				// Valeur de recherche du WHERE
+				pstmt.setInt(1, utilisateur.getNoUtilisateur());
+
+				// Execution de la requete
+				pstmt.executeUpdate();
+
+				pstmt.close();
+
+			} catch (Exception e) {
+				// Journalisation
+				e.printStackTrace();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 	}
 }
