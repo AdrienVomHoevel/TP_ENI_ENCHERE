@@ -81,24 +81,18 @@ public class UtilisateurDAOJdbcImpl {
 	 */
 	public void update(Utilisateur utilisateur) {
 
-		// Sans paramètres, c'est pas la peine.
-		if (utilisateur == null) {
-			return;
-		}
-
 		try (Connection cnx = ConnectionProvider.getConnection()) // la connexion va être automatiquement fermée
 		{
 			try {
 				// ********************
-				// Ajout dans la table UTILISATEUR
-
+				// Modification dans la table UTILISATEUR
 				// Recherche par noUtilisateur dans la requête SQL
-				PreparedStatement pstmt = cnx.prepareStatement("UPDATE UTILISATEURS\r\n"
-						+ "SET pseudo = ?, nom = ?, prenom = ?, email = ?, telephone = ?, \r\n"
-						+ "rue = ?,  code_postal = ?, ville = ?, mot_de_passe = ?,\r\n"
-						+ "credit = ?, administrateur = ?\r\n" + "WHERE (no_utilisateur = "
-						+ utilisateur.getNoUtilisateur() + ");");
+				PreparedStatement pstmt = cnx.prepareStatement(
+						"UPDATE UTILISATEURS SET pseudo = ?, nom = ?, prenom = ?, email = ?, telephone = ?, "
+								+ "rue = ?,  code_postal = ?, ville = ?, mot_de_passe = ?, "
+								+ "credit = ?, administrateur = ? WHERE no_utilisateur = ? ;");
 
+				// Trouver le bon profil.
 				// Valorisation des parametres du PreparedStatement
 				pstmt.setString(1, utilisateur.getPseudo());
 				pstmt.setString(2, utilisateur.getNom());
@@ -111,6 +105,8 @@ public class UtilisateurDAOJdbcImpl {
 				pstmt.setString(9, utilisateur.getMotDePasse());
 				pstmt.setInt(10, utilisateur.getCredit());
 				pstmt.setBoolean(11, utilisateur.getAdministrateur());
+				// Valeur de recherche du WHERE
+				pstmt.setInt(12, utilisateur.getNoUtilisateur());
 
 				// Execution de la requete
 				pstmt.executeUpdate();
@@ -150,6 +146,7 @@ public class UtilisateurDAOJdbcImpl {
 					Utilisateur utilisateurAjout = new Utilisateur();
 					// Pour chaque nouvel identifiant d'utilisateur
 					if (rs.getInt("no_utilisateur") != utilisateurAjout.getNoUtilisateur()) {
+						utilisateurAjout.setNoUtilisateur(rs.getInt("no_utilisateur"));
 						utilisateurAjout.setPseudo(rs.getString("pseudo"));
 						utilisateurAjout.setNom(rs.getString("nom"));
 						utilisateurAjout.setPrenom(rs.getString("prenom"));
