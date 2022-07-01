@@ -6,16 +6,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+import fr.eni.tp.enchere.bll.UtilisateurManager;
 import fr.eni.tp.enchere.bo.Article;
 import fr.eni.tp.enchere.bo.Enchere;
+import fr.eni.tp.enchere.bo.Utilisateur;
 
 public class EnchereDAOJdbcImpl {
 	
-	UtilisateurDAOJdbcImpl utilisateurDAO;
+	UtilisateurManager utilisateurManager;
 	
 	private final static String REQ_INSERT_ENCHERE
 	= "INSERT ENCHERES(no_utilisateur, no_article, date_enchere, montant_enchere) VALUES (?,?,?,?)";
@@ -33,7 +37,7 @@ public class EnchereDAOJdbcImpl {
 	= "SELECT no_utilisateur, no_article, date_enchere, montant_enchere FROM ENCHERES WHERE no_article = ?;";
 	
 	public EnchereDAOJdbcImpl() {
-		this.utilisateurDAO = new UtilisateurDAOJdbcImpl();
+		this.utilisateurManager = UtilisateurManager.getInstance();
 	}
 	
 	/**
@@ -53,7 +57,8 @@ public class EnchereDAOJdbcImpl {
 				
 				ordre.setInt(1, enchere.getEncherisseur().getNoUtilisateur());
 				ordre.setInt(2, noArticle);
-				ordre.setDate(3, Date.valueOf(enchere.getDateEnchere()));
+//				ordre.setDate(3, Date.valueOf(enchere.getDateEnchere()));
+				ordre.setTimestamp(3, Timestamp.valueOf(enchere.getDateEnchere()));
 				ordre.setInt(4, enchere.getMontant_enchere());
 							
 				ordre.executeUpdate();
@@ -94,7 +99,7 @@ public class EnchereDAOJdbcImpl {
 				PreparedStatement ordre = cnx.prepareStatement(REQ_UPDATE_USER_ENCHERE, Statement.RETURN_GENERATED_KEYS);
 				
 				ordre.setInt(1, enchere.getMontant_enchere());
-				ordre.setDate(2, Date.valueOf(enchere.getDateEnchere()));
+				ordre.setTimestamp(2, Timestamp.valueOf(enchere.getDateEnchere()));
 				ordre.setInt(3, enchere.getEncherisseur().getNoUtilisateur());
 				ordre.setInt(4, noArticle);
 							
@@ -196,47 +201,65 @@ public class EnchereDAOJdbcImpl {
 		
 		try(Connection cnx = ConnectionProvider.getConnection()) {				
 			
-			PreparedStatement ordre = cnx.prepareStatement(REQ_SELECT_ALL_ENCHERES_OF_ARTICLE, Statement.RETURN_GENERATED_KEYS);
-						
-			ordre.setInt(1, numeroArticle);
-						
-			ordre.executeQuery();
-			
-			ResultSet rs = ordre.executeQuery();	
-			
-			while (rs.next()) {
+			try {
+				cnx.setAutoCommit(false);
 				
-				String noUtilisateur = rs.getString("no_utilisateur");
+				PreparedStatement ordre = cnx.prepareStatement(REQ_SELECT_ALL_ENCHERES_OF_ARTICLE, Statement.RETURN_GENERATED_KEYS);
+							
+				ordre.setInt(1, numeroArticle);
+							
+				ordre.executeQuery();
 				
-//				Utilisateur encherisseur
+				ResultSet rs = ordre.executeQuery();	
 				
-				String noArticle = rs.getString("no_article");
-				LocalDate dateEnchere = newDate(rs.getString("date_enchere"));		
-				int montant = rs.getInt("montant");
+				while (rs.next()) {
+					
+					int noUtilisateur = rs.getInt("no_utilisateur");				
+					Utilisateur encherisseur = utilisateurManager.getUtilisateurById(noUtilisateur);					
+					LocalDateTime dateEnchere = newDateTime(rs.getString("date_enchere"));	
+					int montant = rs.getInt("montant_enchere");		
+					
+					Enchere enchere = new Enchere(encherisseur, dateEnchere, montant);
+					
+					enchereList.add(enchere);
+					
+				}
 				
+				cnx.commit();
 				
+			} catch (SQLException e) {
 				
-				Enchere enchere = new Enchere(null, montant);
+				System.err.println("Erreur lors de l'éxécution de selectAllEnchereOfArticle()");
+				e.printStackTrace();
 				
+				try {		
+					cnx.rollback();					
+				} catch (SQLException e2) {
+					e2.printStackTrace();
+				}
 			}		
 			
 		} catch ( SQLException sqle) {
-			System.err.println("Erreur lors de l'éxécution de selectHighestEnchere()");
+			System.err.println("Erreur lors de l'éxécution de selectAllEnchereOfArticle()");
 			sqle.printStackTrace();
 		}
-		
-		
+				
 		return enchereList;
 		
-	}
+	}// Eo selectAllEnchereOfArticle()
 	
-	private LocalDate newDate(String date) {
+	/**
+	 * Converti un champ date de la BDD en LocalDateTime.
+	 * @param date
+	 * @return LocalDate
+	 */
+	private LocalDateTime newDateTime(String date) {
 		
-		LocalDate newDate = null;
+		LocalDateTime newDate = null;
 		
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.[SSS][SS]");
   
-		newDate = LocalDate.parse(date, formatter);
+		newDate = LocalDateTime.parse(date, formatter);
 		
 		return newDate;		
 	}

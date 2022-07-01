@@ -18,7 +18,7 @@ public class Article {
 	private Utilisateur vendeur;
 	private Categorie categorie;
 	private Retrait retrait;
-	private ArrayList<Enchere> encheres;
+	private ArrayList<Enchere> encheres; 	
 
 	// utilitaire
 	private CategorieDAOJdbcImpl categorieDAO; // pour requeter le numero des categorie en BDD � partir du libelle

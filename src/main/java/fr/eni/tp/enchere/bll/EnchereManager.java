@@ -1,5 +1,7 @@
 package fr.eni.tp.enchere.bll;
 
+import java.util.ArrayList;
+
 import fr.eni.tp.enchere.bo.Article;
 import fr.eni.tp.enchere.bo.Enchere;
 import fr.eni.tp.enchere.bo.Utilisateur;
@@ -59,6 +61,17 @@ public class EnchereManager {
 		}// Eo first if 
 		
 		return isOk;
+		
+	}
+	
+	/**
+	 * Retourne les encheres d'un article.
+	 * @param noArticle
+	 * @return ArrayList<Enchere>
+	 */
+	public ArrayList<Enchere> getArticlesEncheres(int noArticle) {
+		
+		return enchereDAO.selectAllEnchereOfArticle(noArticle);
 		
 	}
 	
