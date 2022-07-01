@@ -6,7 +6,7 @@
 	<display-name>ENI-ENCHERE</display-name>
 
 	<welcome-file-list>
-		<welcome-file>accueil</welcome-file>
+		<welcome-file>servAccueil</welcome-file>
 	</welcome-file-list>
 
 	<servlet>

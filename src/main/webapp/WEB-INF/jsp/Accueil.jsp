@@ -18,14 +18,14 @@
 			<h1>ENI-Enchères</h1>
 		</div>
 		<div class="cinscrire">
-			<c:if test="${ empty sessionScope.pseudo }">
+			<c:if test="${ empty sessionScope.user.pseudo }">
 				<a href="<c:url value="/seconnecter" />">S'incrire - Se
 					connecter</a>
 			</c:if>
 		</div>
 	</div>
 
-	<c:if test="${ !empty sessionScope.pseudo }">
+	<c:if test="${ !empty sessionScope.user.pseudo }">
 		<a href="#">Enchères</a>
 		<a href="<c:url value="/routeservletnouvellevente" />">Vendre un
 			article</a>
@@ -65,11 +65,17 @@
 			</div>
 
 		</div>
-
-
 	</form>
-	<p>Ici se trouvera prochainement l'affichage des enchères en cour
-		et leur détail</p>
+	<!-- Visuel des enchères en cour -->
+	<div>
+		<!-- Si aucune session n'est en cour -->
+		<c:if test="${ empty sessionScope.user.pseudo }">
+			<!-- Si une session est en cour -->
+		</c:if>
+		<c:if test="${ !empty sessionScope.user.pseudo }">
+
+		</c:if>
+	</div>
 
 </body>
 </html>
