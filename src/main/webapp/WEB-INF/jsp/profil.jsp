@@ -14,14 +14,14 @@
 	<%@ page import="fr.eni.tp.enchere.bo.Utilisateur"%>
 
 	<h1>ENI-Enchères</h1>
-	<p>Pseudo: ${ requestScope.utilisateur.pseudo }</p>
-	<p>Nom: ${ requestScope.utilisateur.nom }</p>
-	<p>Prénom: ${ requestScope.utilisateur.prenom }</p>
-	<p>Email: ${ requestScope.utilisateur.email }</p>
-	<p>Teléphone: ${ requestScope.utilisateur.telephone }</p>
-	<p>Rue: ${ requestScope.utilisateur.rue }</p>
-	<p>Code postal: ${ requestScope.utilisateur.codePostal }</p>
-	<p>Ville: ${ requestScope.utilisateur.ville }</p>
+	<p>Pseudo: ${ sessionScope.user.pseudo }</p>
+	<p>Nom: ${ sessionScope.user.nom }</p>
+	<p>Prénom: ${ sessionScope.user.prenom }</p>
+	<p>Email: ${ sessionScope.user.email }</p>
+	<p>Teléphone: ${ sessionScope.user.telephone }</p>
+	<p>Rue: ${ sessionScope.user.rue }</p>
+	<p>Code postal: ${ sessionScope.user.codePostal }</p>
+	<p>Ville: ${ sessionScope.user.ville }</p>
 
 	<a href="<c:url value="/inscription" />"><button>Modifier</button></a>
 </body>

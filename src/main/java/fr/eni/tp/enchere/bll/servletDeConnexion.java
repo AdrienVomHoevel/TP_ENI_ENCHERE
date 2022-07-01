@@ -41,16 +41,15 @@ public class servletDeConnexion extends HttpServlet {
 		// Génère la liste des utilisateurs
 		listeUtilisateur = connexionDB.selectUser();
 
+		// Initialisation du moteur de session J2EE
+		HttpSession session = request.getSession();
 		// Parcourir la liste des utilisateurs jusqu'à ce que ça corresponde
 		for (Utilisateur user : listeUtilisateur) {
 			// si le pseudo et le mot de passe correspondent
 			if (user.getPseudo().equals(saisieIdentifiant) && user.getMotDePasse().equals(saisieMotDePasse)) {
-				// Initialisation du moteur de session J2EE
-				HttpSession session = request.getSession();
+
 				// Garder en mémoire l'information de pseudo (ou identifiant)
-				session.setAttribute("pseudo", saisieIdentifiant);
-				session.setAttribute("mdp", saisieMotDePasse);
-				session.setAttribute("noutilisateur", user.getNoUtilisateur());
+				session.setAttribute("user", user);
 				// La session garde en mémoire les informations sur l'utilisateur.
 				// TODO Utiliser un cookie pour le se souvenir checkbox
 

@@ -84,8 +84,7 @@ public class servletInscription extends HttpServlet {
 				// Récupération des information pour initialiser la session
 				HttpSession session = request.getSession();
 
-				session.setAttribute("pseudo", saisiePseudo);
-				session.setAttribute("mdp", saisieMotDePasse);
+				session.setAttribute("user", utilisateurAjout);
 
 				// La personne inscrite est dirigée sur son profil utilisateur.
 				rd = request.getRequestDispatcher("/profilUtilisateur");
