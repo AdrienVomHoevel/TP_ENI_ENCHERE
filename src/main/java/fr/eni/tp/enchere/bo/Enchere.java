@@ -8,7 +8,7 @@ public class Enchere {
 	private int montant_enchere;
 	private Utilisateur encherisseur;
 
-	public Enchere(Utilisateur encherisseur, int montant_enchere, Article articleVendu) {
+	public Enchere(Utilisateur encherisseur, int montant_enchere) {
 		super();
 		this.dateEnchere = LocalDate.now();
 		this.montant_enchere = montant_enchere;

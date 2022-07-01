@@ -157,16 +157,16 @@ public class Utilisateur {
 	 * @param montantEnchere Montant de l'enchere
 	 * @return une enchere crée par la méthode.
 	 */
-	public Enchere encherit(LocalDate dateEnchere, int montantEnchere) {
-
-		Enchere resultat = null;
-
-		Enchere nouvelleEnchere = new Enchere(dateEnchere, montantEnchere);
-
-		resultat = nouvelleEnchere;
-
-		return resultat;
-	}
+//	public Enchere encherit(LocalDate dateEnchere, int montantEnchere) {
+//
+//		Enchere resultat = null;
+//
+//		Enchere nouvelleEnchere = new Enchere(dateEnchere, montantEnchere);
+//
+//		resultat = nouvelleEnchere;
+//
+//		return resultat;
+//	}
 
 	/**
 	 * Permet l'échange de points lors de la fin d'une enchere, du point de vu de

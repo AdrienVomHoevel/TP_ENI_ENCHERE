@@ -37,7 +37,9 @@ public class Article {
 		this.miseAPrix = miseAPrix;
 		this.vendeur = vendeur;
 		this.categorie = setCategorie(categorie);
-		this.retrait = setRetrait(rue, codePostal, ville);
+		this.retrait = setRetrait(rue, codePostal, ville);		
+		this.encheres = new ArrayList<>();
+
 	}
 
 	public Article(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
@@ -54,6 +56,7 @@ public class Article {
 		this.vendeur = vendeur;
 		this.categorie = setCategorie(categorie);
 		this.retrait = setRetrait(rue, codePostal, ville);
+		this.encheres = new ArrayList<>();
 	}
 
 	public int getNoArticle() {
@@ -151,8 +154,6 @@ public class Article {
 	public Retrait setRetrait(String rue, String codePostal, String ville) {
 
 		Retrait nouveauRetrait = null;
-
-		System.out.println(rue);
 
 		try {
 			if (!rue.isEmpty() && !codePostal.isEmpty() && !ville.isEmpty()) {

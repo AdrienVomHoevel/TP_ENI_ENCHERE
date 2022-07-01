@@ -36,8 +36,7 @@ public class UtilisateurManager {
 	 * @return Utilisateur
 	 */
 	public Utilisateur getUtilisateurById(int id) {
-		
-		System.out.println("getUtilisateurById() -> " + id);		
+				
 		Utilisateur utilisateurToReturn = null;
 		
 		ArrayList<Utilisateur> userList = (ArrayList<Utilisateur>) utilisateurDAO.selectUser();
