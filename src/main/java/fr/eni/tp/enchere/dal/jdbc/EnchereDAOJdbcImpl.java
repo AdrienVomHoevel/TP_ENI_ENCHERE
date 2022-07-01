@@ -6,11 +6,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 import fr.eni.tp.enchere.bo.Article;
 import fr.eni.tp.enchere.bo.Enchere;
 
 public class EnchereDAOJdbcImpl {
+	
+	UtilisateurDAOJdbcImpl utilisateurDAO;
 	
 	private final static String REQ_INSERT_ENCHERE
 	= "INSERT ENCHERES(no_utilisateur, no_article, date_enchere, montant_enchere) VALUES (?,?,?,?)";
@@ -23,6 +28,13 @@ public class EnchereDAOJdbcImpl {
 	
 	private final static String REQ_SELECT_HIGHEST_ENCHERE
 	= "SELECT MAX(montant_enchere) AS montant FROM ENCHERES WHERE no_article = ?;";
+	
+	private final static String REQ_SELECT_ALL_ENCHERES_OF_ARTICLE
+	= "SELECT no_utilisateur, no_article, date_enchere, montant_enchere FROM ENCHERES WHERE no_article = ?;";
+	
+	public EnchereDAOJdbcImpl() {
+		this.utilisateurDAO = new UtilisateurDAOJdbcImpl();
+	}
 	
 	/**
 	 * Insere une enchere.
@@ -177,5 +189,56 @@ public class EnchereDAOJdbcImpl {
 		return montant;
 		
 	}// EO selectEnchereByArticleAndUser()
+	
+	public ArrayList<Enchere> selectAllEnchereOfArticle(int numeroArticle) {
+		
+		ArrayList<Enchere> enchereList = new ArrayList<>();
+		
+		try(Connection cnx = ConnectionProvider.getConnection()) {				
+			
+			PreparedStatement ordre = cnx.prepareStatement(REQ_SELECT_ALL_ENCHERES_OF_ARTICLE, Statement.RETURN_GENERATED_KEYS);
+						
+			ordre.setInt(1, numeroArticle);
+						
+			ordre.executeQuery();
+			
+			ResultSet rs = ordre.executeQuery();	
+			
+			while (rs.next()) {
+				
+				String noUtilisateur = rs.getString("no_utilisateur");
+				
+//				Utilisateur encherisseur
+				
+				String noArticle = rs.getString("no_article");
+				LocalDate dateEnchere = newDate(rs.getString("date_enchere"));		
+				int montant = rs.getInt("montant");
+				
+				
+				
+				Enchere enchere = new Enchere(null, montant);
+				
+			}		
+			
+		} catch ( SQLException sqle) {
+			System.err.println("Erreur lors de l'éxécution de selectHighestEnchere()");
+			sqle.printStackTrace();
+		}
+		
+		
+		return enchereList;
+		
+	}
+	
+	private LocalDate newDate(String date) {
+		
+		LocalDate newDate = null;
+		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+  
+		newDate = LocalDate.parse(date, formatter);
+		
+		return newDate;		
+	}
 	
 }

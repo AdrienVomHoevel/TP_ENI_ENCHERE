@@ -14,6 +14,13 @@ public class Enchere {
 		this.montant_enchere = montant_enchere;
 		this.encherisseur = encherisseur;
 	}
+	
+	public Enchere(Utilisateur encherisseur, LocalDate dateEnchere, int montant_enchere) {
+		super();
+		this.dateEnchere = dateEnchere;
+		this.montant_enchere = montant_enchere;
+		this.encherisseur = encherisseur;
+	}
 
 	public LocalDate getDateEnchere() {
 		return dateEnchere;
