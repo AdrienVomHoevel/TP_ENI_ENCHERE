@@ -23,7 +23,6 @@ public class servletAccueil extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		List<Article> enchere = new ArrayList<Article>();
 
 		ArticleVenduDAOJdbcImpl connexionDAL = new ArticleVenduDAOJdbcImpl();
