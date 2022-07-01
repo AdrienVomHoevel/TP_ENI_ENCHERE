@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="fr.eni.tp.enchere.bo.Article"%>
+<%@ page import="fr.eni.tp.enchere.bo.Retrait"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,94 +13,37 @@
 </head>
 <body>
 
-	<div>
-		<!-- Ce premier h3 est en fait l'objet de la vante -->
-		<div>
+	<!-- Nom de l'article -->
+	<h3>${ requestScope.nouvelArticle.nomArticle }</h3>
+	<!-- Description de l'objet -->
+	<p>Description :${ requestScope.nouvelArticle.description }</p>
+	<!-- Catégorie de l'objet -->
+	<p>Catégorie :${ requestScope.nouvelArticle.categorie.libelle }</p>
+	<!-- /!\ A tester une fois les enchères mise en place /!\ Meilleure offre actuelle sur l'objet -->
+	<!-- <p>Meilleure offre :${ empty requestScope.nouvelArticle.encheres? "Aucunes enchères en cour" : requestScope.nouvelArticle.encheres}</p> -->
+	<!--  Mise à prix de base de l'objet -->
+	<p>Mise à prix :${ requestScope.nouvelArticle.miseAPrix }</p>
+	<!-- Date de fin de l'enchere -->
+	<p>Fin de l'enchère :${ requestScope.nouvelArticle.dateFinEncheres }</p>
+	<!-- Lieu de retrait -->
+	<p>Retrait :${ requestScope.nouvelArticle.retrait.rue }, ${ requestScope.nouvelArticle.retrait.code_postal },
+		${ requestScope.nouvelArticle.retrait.ville }</p>
+	<!-- Pseudo du vendeur -->
+	<p>Vendeur :${ requestScope.nouvelArticle.vendeur.pseudo }</p>
+	<!-- Proposition actuelle de l'utilisateur -->
+	<!-- Rajouter la fonctionnalité enchérir -->
 
-			<div>
-				<h3>PC Gamer pour travailler</h3>
-			</div>
-
-		</div>
-
-		<!-- Description de l'objet -->
-		<div>
-
-			<div>
-				<p>Description :</p>
-			</div>
-
-		</div>
-
-		<!-- Catégorie de l'objet -->
-		<div>
-
-			<div>
-				<p>Catégorie :</p>
-			</div>
-
-		</div>
-
-		<!-- Meilleure offre actuelle sur l'objet -->
-		<div>
-
-			<div>
-				<p>Meilleure offre :</p>
-			</div>
-
-		</div>
-
-		<!--  Mise à prix de base de l'objet -->
-		<div>
-
-			<div>
-				<p>Mise à prix :</p>
-			</div>
-
-		</div>
-
-		<!-- Date de fin de l'enchere -->
-		<div>
-
-			<div>
-				<p>Fin de l'enchère :</p>
-			</div>
-
-		</div>
+	<!-- Si l'utilisateur en cour n'est pas le vendeur et si il est bien connecté -->
+	<c:if
+		test="${requestScope.nouvelArticle.vendeur.pseudo != sessionScope.pseudo && empty session.pseudo}">
+		<form action="<c:url value="" />" method="post">
+			<label for="encherir">Ma proposition :</label> <input type="number"
+				id="encherir" name="ajoutEnchere">
+			<button type="submit">Enchérir</button>
+		</form>
+	</c:if>
 
 
-		<!-- Lieu de retrait -->
-		<div>
-
-			<div>
-				<p>Retrait :</p>
-			</div>
-
-		</div>
-
-		<!-- Pseudo du vendeur -->
-		<div>
-
-			<div>
-				<p>Vendeur :</p>
-			</div>
-
-		</div>
-
-		<!-- Proposition actuelle de l'utilisateur -->
-		<div>
-
-			<div>
-				<p>Ma proposition :</p>
-				<input type="number">
-				<button>Enchérir</button>
-			</div>
-
-		</div>
-
-
-
-	</div>
 
 </body>
 </html>

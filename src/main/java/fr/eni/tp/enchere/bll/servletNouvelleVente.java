@@ -92,12 +92,14 @@ public class servletNouvelleVente extends HttpServlet {
 		String rueRetrait = request.getParameter("rueRetrait");
 		String codepostal = request.getParameter("codepostal");
 		String ville = request.getParameter("ville");
-
+		// Création de l'article à vendre
 		Article nouvelArticle = new Article(nomArticle, description, dateDebutparse, dateFinparse, newmiseaprix,
 				vendeur, categories, rueRetrait, codepostal, ville);
 		ArticleVenduDAOJdbcImpl mettreEnVente = new ArticleVenduDAOJdbcImpl();
-
+		// Ajout dans la DAL de l'article à vendre
 		mettreEnVente.insertArticleVendu(nouvelArticle);
+
+		request.setAttribute("nouvelArticle", nouvelArticle);
 
 		RequestDispatcher rd = request.getRequestDispatcher("/detailVente");
 		rd.forward(request, response);

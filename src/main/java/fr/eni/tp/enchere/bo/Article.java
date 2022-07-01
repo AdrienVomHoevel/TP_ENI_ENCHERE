@@ -19,26 +19,17 @@ public class Article {
 	private Categorie categorie;
 	private Retrait retrait;
 	private ArrayList<Enchere> encheres;
-	
-	//utilitaire
-	private CategorieDAOJdbcImpl categorieDAO; // pour requeter le numero des categorie en BDD à partir du libelle
-	 
-	 
+
+	// utilitaire
+	private CategorieDAOJdbcImpl categorieDAO; // pour requeter le numero des categorie en BDD ï¿½ partir du libelle
+
 	/**
 	 * Constructeur sans noArticle
 	 **/
-	public Article( String nomArticle, 
-					String description, 
-					LocalDate dateDebutEncheres,
-					LocalDate dateFinEncheres, 
-					int miseAPrix,
-					Utilisateur vendeur, 
-					String categorie,
-					String rue, 
-					String codePostal, 
-					String ville){	
-		
-		this.categorieDAO = new CategorieDAOJdbcImpl();		
+	public Article(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
+			int miseAPrix, Utilisateur vendeur, String categorie, String rue, String codePostal, String ville) {
+
+		this.categorieDAO = new CategorieDAOJdbcImpl();
 		this.nomArticle = nomArticle;
 		this.description = description;
 		this.dateDebutEncheres = dateDebutEncheres;
@@ -46,21 +37,13 @@ public class Article {
 		this.miseAPrix = miseAPrix;
 		this.vendeur = vendeur;
 		this.categorie = setCategorie(categorie);
-		this.retrait = setRetrait(rue, codePostal, ville);		
+		this.retrait = setRetrait(rue, codePostal, ville);
 	}
 
-	public Article( int noArticle, 
-					String nomArticle, 
-					String description, 
-					LocalDate dateDebutEncheres,
-					LocalDate dateFinEncheres, 
-					int miseAPrix, 
-					Utilisateur vendeur, 
-					String categorie,
-					String rue, 
-					String codePostal, 
-					String ville){
-		
+	public Article(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
+			LocalDate dateFinEncheres, int miseAPrix, Utilisateur vendeur, String categorie, String rue,
+			String codePostal, String ville) {
+
 		this.categorieDAO = new CategorieDAOJdbcImpl();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
@@ -69,7 +52,7 @@ public class Article {
 		this.dateFinEncheres = dateFinEncheres;
 		this.miseAPrix = miseAPrix;
 		this.vendeur = vendeur;
-		this.categorie = setCategorie(categorie);	
+		this.categorie = setCategorie(categorie);
 		this.retrait = setRetrait(rue, codePostal, ville);
 	}
 
@@ -136,7 +119,7 @@ public class Article {
 	public void setStatVente(String statVente) {
 		this.etatVente = statVente;
 	}
-	
+
 	public Utilisateur getVendeur() {
 		return vendeur;
 	}
@@ -144,21 +127,21 @@ public class Article {
 	public void setVendeur(Utilisateur vendeur) {
 		this.vendeur = vendeur;
 	}
-	
+
 	public Categorie getCategorie() {
 		return categorie;
 	}
 
 	public Categorie setCategorie(String libelle) {
-		
+
 		Categorie categorie = null;
-		
+
 		int noCategorie = categorieDAO.selectNoCategorieByLibelle(libelle);
-		
+
 		categorie = new Categorie(noCategorie, libelle);
-			
+
 		return categorie;
-		
+
 	}
 
 	public Retrait getRetrait() {
@@ -166,20 +149,20 @@ public class Article {
 	}
 
 	public Retrait setRetrait(String rue, String codePostal, String ville) {
-		
-		Retrait nouveauRetrait = null; 
-		
+
+		Retrait nouveauRetrait = null;
+
 		System.out.println(rue);
-		
+
 		try {
 			if (!rue.isEmpty() && !codePostal.isEmpty() && !ville.isEmpty()) {
-				nouveauRetrait = new Retrait(rue, codePostal, ville); 
+				nouveauRetrait = new Retrait(rue, codePostal, ville);
 			}
 		} catch (NullPointerException e) {
-			nouveauRetrait = new Retrait("non-définie", "non-défini", "non-définie");
+			nouveauRetrait = new Retrait("non-dï¿½finie", "non-dï¿½fini", "non-dï¿½finie");
 		}
-		
-		return nouveauRetrait; 
+
+		return nouveauRetrait;
 	}
 
 	public ArrayList<Enchere> getEncheres() {
